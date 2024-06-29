@@ -1,0 +1,30 @@
+<header>
+    <nav>
+        <a href="admin.php"><img src="img/logo.ico"></a>
+        <div class="nav-links" id="navlinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="admin.php">DASHBOARD</a></li>
+                <li><a href="admin_events.php">EVENTS</a></li>
+                <li><a href="admin_news.php">NEWS</a></li>
+                <li><a href="admin_hall.php">HALL OF FAME</a></li>
+                <li><a href="admin_submissions.php">SUBMISSIONS</a></li>
+
+                <?php
+                $count_messages = $conn->prepare("SELECT * FROM `messages` WHERE status = 'unread'");
+                $count_messages->execute();
+                $inbox = $count_messages->rowCount();
+                ?>
+
+
+                <!--<li><a href="gallery.php">GALLERY</a></li>-->
+                <li><a href="inbox.php">INBOX<sup>
+                            <?= $inbox ?>
+                        </sup></a></li>
+            </ul>
+        </div>
+        <!--<i class="fa fa-moon-o" style="display:block; cursor:pointer;" onclick="dark()"></i>-->
+        <a href="logout.php" style="color:var(--dark); text-decoration:none; margin-left:2rem;"><i class="fa fa-power-off" style="display:block;"></i></a>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+</header>
